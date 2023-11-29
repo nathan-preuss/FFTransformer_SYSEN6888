@@ -17,7 +17,7 @@ df= df.sort_values(by=[0, 1], ascending=[True, True])
 df = df.transpose()
 
 #remove unnecessary headings
-df.columns = [i for i in range(116)]
+df.columns = [i for i in range(df.shape[1])] #TODO check new number of columns
 df = df.drop(columns=[i for i in range(13,24)], axis = 1)
 
 # reorder appropriate headings
