@@ -76,6 +76,8 @@ class Dataset_wind_data(Dataset):
             else:
                 self.scaler.fit(df_data.stack().values)
             # [Samples, meas, stations]
+            temp3 = df_data.shape[0]
+            temp4 = df_data.columns.get_level_values(0).nunique()
             data = df_data.values.reshape(df_data.shape[0], df_data.columns.get_level_values(0).nunique(), -1)
             data = np.stack([self.scaler.transform(data[..., i]) for i in range(data.shape[-1])], -1)
         else:

@@ -3,7 +3,6 @@
 #TODO: eventually adjust model from hours ahead to year ahead forecasting
 import pandas as pd
 df = pd.read_csv("dataset_example/WindData/dataset/Windspeeds_Full_TestTrainVal.csv", header=None)
-print(df.shape[0])
 
 #get number of records in each split
 train= int(0.6*df.shape[0])
@@ -19,13 +18,15 @@ df = df.transpose()
 
 #remove unnecessary headings
 df.columns = [i for i in range(116)]
-df = df.drop(columns=[i for i in range(24)], axis = 1)
+df = df.drop(columns=[i for i in range(13,24)], axis = 1)
 
 # reorder appropriate headings
+tide = [i for i in range(0,13)]
 time = [i for i in range(94, 107)]
 first = [i for i in range(24, 93)]
 last = [i for i in range(107, 116)]
 time.extend(first)
+time.extend(tide)
 time.extend(last)
 df = df[time]
 
