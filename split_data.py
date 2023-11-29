@@ -9,14 +9,30 @@ print(df.shape[0])
 train= int(0.6*df.shape[0])
 val = int(0.2*df.shape[0])
 
-#split df
+#rename header variables
+df.loc[:1,].replace(['DATE', 'ATMP', 'PRES', 'DEWP', "GST", "WSPD"], ['time', 'air_temperature', 'air_pressure_at_sea_level', 'dew_point_temperature', "max(wind_speed_of_gust PT10M)", "wind_speed"], inplace=True)
+
+#getting heading values in the right order
+df = df.transpose()
+df= df.sort_values(by=[0, 1], ascending=[True, True])
+df = df.transpose()
+
+#remove unnecessary headings
+df.columns = [i for i in range(116)]
+df = df.drop(columns=[i for i in range(24)], axis = 1)
+
+# reorder appropriate headings
+time = [i for i in range(94, 107)]
+first = [i for i in range(24, 93)]
+last = [i for i in range(107, 116)]
+time.extend(first)
+time.extend(last)
+df = df[time]
+
 header = df.loc[:1,]
 df_train = df.loc[2:train,]
 df_val = df.loc[train+1:train+val,]
 df_test = df.loc[train+val+1:,]
-
-#rename header variables
-header.replace(['DATE', 'ATMP', 'PRES', 'DEWP', "GST", "WSPD"], ['time', 'air_temperature', 'air_pressure_at_sea_level', 'dew_point_temperature', "max(wind_speed_of_gust PT10M)", "wind_speed"], inplace=True)
 
 df_train = pd.concat([header,df_train])
 df_val = pd.concat([header,df_val])

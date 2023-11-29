@@ -56,6 +56,8 @@ class Dataset_wind_data(Dataset):
         if self.features == 'M' or self.features == 'MS':
             cols_data = df_raw.columns[df_raw.columns.get_level_values(0) != 'time']
             df_data = df_raw[cols_data]
+            temp = df_raw.columns.get_level_values(0).unique()[-1:]
+            temp2 = ['wind_speed']
             assert (df_raw.columns.get_level_values(0).unique()[-1:] == ['wind_speed']).all()
         elif self.features == 'S':
             cols_data = df_raw.columns[df_raw.columns.get_level_values(0) == 'wind_speed']

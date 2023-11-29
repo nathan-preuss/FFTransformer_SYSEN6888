@@ -25,7 +25,7 @@ def main():
     # data loader
     parser.add_argument('--data', type=str, required=False, default='Wind', help='dataset type, Wind or WindGraph')
     parser.add_argument('--root_path', type=str, default='./dataset_example/WindData/dataset/', help='root path of the data file')
-    parser.add_argument('--data_path', type=str, default='wind_data.csv', help='data file')
+    parser.add_argument('--data_path', type=str, default='wind_data.csv', help='data file') # wind_data
     parser.add_argument('--target', type=str, default='KVITEBJØRNFELTET', help='optional target station for non-graph models')
     parser.add_argument('--freq', type=str, default='10min', help='freq for time features encoding, options:[s:secondly, t:minutely, h:hourly, d:daily, b:business days, w:weekly, m:monthly], you can also use more detailed freq like 15min or 3h')
     parser.add_argument('--checkpoints', type=str, default='./checkpoints/', help='location of model checkpoints')
