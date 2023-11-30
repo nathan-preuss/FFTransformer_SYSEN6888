@@ -1,6 +1,6 @@
 # script to split our big data file into 60% test, 20% val, and 20% train
 # following the original paper, we do the split based on time with no shuffling
-
+import numpy as np
 import pandas as pd
 df = pd.read_csv("dataset_example/WindData/dataset/Windspeeds_Full_TestTrainVal.csv", header=None)
 
@@ -10,6 +10,8 @@ val = int(0.2*df.shape[0])
 
 #rename header variables
 df.loc[:1,].replace(['DATE', 'ATMP', 'PRES', 'DEWP', "GST", "WSPD"], ['time', 'air_temperature', 'air_pressure_at_sea_level', 'dew_point_temperature', "max(wind_speed_of_gust PT10M)", "wind_speed"], inplace=True)
+df.replace(np.NaN, 9999, inplace=True)
+df = df.dropna()
 
 #getting heading values in the right order
 df = df.transpose()
