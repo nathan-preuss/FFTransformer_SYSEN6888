@@ -117,6 +117,7 @@ def visual(true, preds=None, name='./pic/test.png'):
     if preds is not None:
         plt.plot(preds, label='Prediction', linewidth=2)
     plt.legend()
+    plt.ylabel("wind speed (m/s)")
     plt.savefig(name, bbox_inches='tight')
 
 

@@ -16,7 +16,7 @@ def main():
     # basic config
     parser.add_argument('--is_training', type=int, required=False, default=1, help='status')
     parser.add_argument('--model_id', type=str, required=False, default='test', help='model id for saving')
-    parser.add_argument('--model', type=str, required=False, default='FFTransformer',
+    parser.add_argument('--model', type=str, required=False, default='persistence',
                         help='model name, options: [FFTransformer, Autoformer, Informer, Transformer, LogSparse, LSTM, MLP, persistence (and same with GraphXxxx)]')
     parser.add_argument('--plot_flag', type=int, default=1, help='Whether to save loss plots or not')
     parser.add_argument('--test_dir', type=str, default='', help='Base dir to save test results')
@@ -26,7 +26,7 @@ def main():
     parser.add_argument('--data', type=str, required=False, default='Wind', help='dataset type, Wind or WindGraph')
     parser.add_argument('--root_path', type=str, default='./dataset_example/WindData/dataset/', help='root path of the data file')
     parser.add_argument('--data_path', type=str, default='wind_data.csv', help='data file') # wind_data
-    parser.add_argument('--target', type=str, default='44004', help='optional target station for non-graph models') #KVITEBJØRNFELTET
+    parser.add_argument('--target', type=str, default='44013', help='optional target station for non-graph models') #KVITEBJØRNFELTET
     parser.add_argument('--freq', type=str, default='h', help='freq for time features encoding, options:[s:secondly, t:minutely, h:hourly, d:daily, b:business days, w:weekly, m:monthly], you can also use more detailed freq like 15min or 3h')
     parser.add_argument('--checkpoints', type=str, default='./checkpoints/', help='location of model checkpoints')
     parser.add_argument('--checkpoint_flag', type=int, default=1, help='Whether to checkpoint or not')
@@ -39,7 +39,7 @@ def main():
     parser.add_argument('--features', type=str, default='M', help='forecasting task, options:[M, S]; M:multivariate input, S:univariate input')
     parser.add_argument('--seq_len', type=int, default=64, help='input sequence length')
     parser.add_argument('--label_len', type=int, default=48, help='start token length. Note that Graph models only use label_len and pred_len')
-    parser.add_argument('--pred_len', type=int, default=6, help='prediction sequence length')
+    parser.add_argument('--pred_len', type=int, default=720, help='prediction sequence length') # 24, 168, 720
     parser.add_argument('--enc_in', type=int, default=8, help='Number of encoder input features')
     parser.add_argument('--dec_in', type=int, default=8, help='Number of decoder input features')
     parser.add_argument('--c_out', type=int, default=1, help='output size, note that it is assumed that the target features are placed last')

@@ -9,7 +9,6 @@ __pycache__/
 # Datasets: 
 dataset/*
 checkpoints/*
-results/*
 test_results/*
 Tuning/Results/*
 Tuning/*

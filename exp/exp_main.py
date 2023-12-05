@@ -492,10 +492,19 @@ class Exp_Main(Exp_Basic):
                     else:
                         input = batch_x.detach().cpu().numpy()
 
+                    preds_un = test_data.inverse_transform(pred)
+                    trues_un = test_data.inverse_transform(true)
+                    input_un = test_data.inverse_transform(input)
+
                     gt = np.concatenate((input[0, :, -1], true[0, :, -1]), axis=0)
                     pd = np.concatenate((input[0, :, -1], pred[0, :, -1]), axis=0)
+
+                    gt_un = np.concatenate((input_un[0, :, -1], trues_un[0, :, -1]), axis=0)
+                    pd_un = np.concatenate((input_un[0, :, -1], preds_un[0, :, -1]), axis=0)
+
                     if save_flag:
-                        visual(gt, pd, os.path.join(folder_path, str(i) + '.png'))
+                        #visual(gt, pd, os.path.join(folder_path, str(i) + '.png'))
+                        visual(gt_un, pd_un, os.path.join(folder_path, str(i) + '_un.png'))
 
         preds = np.vstack(preds)
         trues = np.vstack(trues)
