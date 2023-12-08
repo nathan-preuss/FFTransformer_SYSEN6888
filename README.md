@@ -1,3 +1,13 @@
+# SYSEN 6888 Course Project
+
+It is exceptionally important that Python 3.6 is installed to run this code, and that all of the requirements are installed via pip using ```pip install -r requirements.txt```
+
+To run the model, it is enough to execute run.py file. While this can be done from the command line, offering significant customization abilities that are not explored in the project, all the values used in the project are set as the defaults.
+To change the model type, edit the default model on line 19 of run.py based on the available options. For this project, only FFTransformer, LSTM, and persistence was used.
+To change the prediction horizon, edit the pred_len argument in line 42 of run.py.
+
+The remainder of the original README.md file is below, since this repo was forked.
+
 # FFTransformer
 
 We propose the FFTransformer, a new alteration of the Transformer architecture. The architecture is based on wavelet decomposition and an adapted Transformer architecture consisting of two streams. One stream analyses periodic components in the frequency domain with an adapted attentiom mechanism based on fast Fourier Transform (FFT), and another stream similar to the vanilla Transformer, which leanrs trend components. So far the model have only been tested for spatio-temporal multi-step wind speed forecasting [[paper](https://authors.elsevier.com/sd/article/S0306-2619(22)01822-0)]. This repository contains code for our proposed model, the [Transformer](https://proceedings.neurips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html), [LogSparse Transformer](https://proceedings.neurips.cc/paper/2019/hash/6775a0635c302542da2c32aa19d86be0-Abstract.html), [Informer](https://arxiv.org/abs/2012.07436), [Autoformer](https://proceedings.neurips.cc/paper/2021/hash/bcc0d400288793e8bdcd7c19a8ac0c2b-Abstract.html), LSTM, MLP and a persistence model. All architectures are also implemented in a spatio-temporal setting, where the respective models are used as update functions in GNNs. Scripts for running the models follow the same style as in the [Autoformer repo](https://github.com/thuml/Autoformer). 
